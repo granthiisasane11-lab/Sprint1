@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manual Planner | FutureMe</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f8ff;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: white;
+            padding: 15px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #10145c;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #5b45d8;
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading span {
+            color: #7c3aed;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .heading h1 {
+            font-size: 38px;
+            color: #10145c;
+            margin: 10px 0;
+        }
+
+        .heading p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* GOAL CARD */
+
+        .goal-card {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(91, 69, 216, 0.2);
+        }
+
+        .goal-card small {
+            opacity: 0.85;
+        }
+
+        .goal-card h2 {
+            margin: 8px 0;
+            font-size: 24px;
+        }
+
+        .goal-card p {
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* PLANNER CARD */
+
+        .planner-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .planner-card h2 {
+            color: #10145c;
+            margin-bottom: 8px;
+        }
+
+        .planner-card > p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /* STEP INPUT */
+
+        .input-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .input-row input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e4f5;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-row input:focus {
+            border-color: #7c3aed;
+        }
+
+        .add-btn {
+            border: none;
+            padding: 0 22px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* STEPS */
+
+        .steps-container {
+            margin-top: 10px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            background: #f7f8ff;
+            border: 1px solid #e2e5f5;
+            border-radius: 14px;
+            margin-bottom: 12px;
+        }
+
+        .step-number {
+            min-width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step-text {
+            flex: 1;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .remove-btn {
+            border: none;
+            background: #ffe8e8;
+            color: #d93030;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove-btn:hover {
+            background: #ffd5d5;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #888;
+            padding: 25px;
+            border: 2px dashed #ddd;
+            border-radius: 14px;
+        }
+
+        /* SAVE BUTTON */
+
+        .save-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            opacity: 0.9;
+        }
+
+        .change-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #5b45d8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 94%;
+                margin: 30px auto;
+            }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+
+            .input-row {
+                flex-direction: column;
+            }
+
+            .add-btn {
+                padding: 14px;
+            }
+
+            .step-item {
+                align-items: flex-start;
+            }
+
+            .remove-btn {
+                padding: 7px 9px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="dashboard.html" class="logo">
+
+            <img
+                src="FutureMe_logo.png"
+                alt="FutureMe Logo"
+            >
+
+            FutureMe
+
+        </a>
+
+
+        <a
+            href="planner-choice.html"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <div class="heading">
+
+            <span>✍️ MANUAL PLANNER</span>
+
+            <h1>Create Your Own Plan</h1>
+
+            <p>
+                Break your goal into simple steps and build your personal action plan.
+            </p>
+
+        </div>
+
+
+
+        <!-- GOAL -->
+
+        <div class="goal-card">
+
+            <small>YOUR CURRENT GOAL</small>
+
+            <h2 id="goalName">
+                Loading...
+            </h2>
+
+            <p>
+                Category:
+                <strong id="goalCategory">-</strong>
+            </p>
+
+            <p>
+                Target Date:
+                <strong id="targetDate">-</strong>
+            </p>
+
+        </div>
+
+
+
+        <!-- PLANNER -->
+
+        <div class="planner-card">
+
+            <h2>📝 Add Your Steps</h2>
+
+            <p>
+                Think about what you need to do to achieve your goal.
+                Add each step one by one.
+            </p>
+
+
+
+            <!-- STEP INPUT -->
+
+            <div class="input-row">
+
+                <input
+                    type="text"
+                    id="stepInput"
+                    placeholder="Example: Complete SQL basics"
+                    maxlength="200"
+                >
+
+                <button
+                    type="button"
+                    class="add-btn"
+                    onclick="addStep()"
+                >
+                    + Add Step
+                </button>
+
+            </div>
+
+
+
+            <!-- STEPS -->
+
+            <div
+                class="steps-container"
+                id="stepsContainer"
+            >
+
+                <div
+                    class="empty-message"
+                    id="emptyMessage"
+                >
+                    No steps added yet.<br>
+                    Start by adding your first step.
+                </div>
+
+            </div>
+
+
+
+            <!-- SAVE -->
+
+            <button
+                type="button"
+                class="save-btn"
+                onclick="savePlan()"
+            >
+                Save My Plan →
+            </button>
+
+
+
+            <a
+                href="planner-choice.html"
+                class="change-btn"
+            >
+                ← Change Planning Method
+            </a>
+
+        </div>
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================================
+           GET CURRENT GOAL
+        ========================================= */
+
+        const savedGoal = localStorage.getItem("futureMeGoal");
+
+
+        if (!savedGoal) {
+
+            alert("Please create a goal first.");
+
+            window.location.href = "goal.html";
+
+        }
+
+
+        const goal = JSON.parse(savedGoal);
+
+
+
+        /* =========================================
+           DISPLAY GOAL
+        ========================================= */
+
+        document.getElementById("goalName").textContent =
+            goal.name;
+
+        document.getElementById("goalCategory").textContent =
+            goal.category;
+
+        document.getElementById("targetDate").textContent =
+            goal.targetDate;
+
+
+
+        /* =========================================
+           STEPS ARRAY
+        ========================================= */
+
+        let steps = [];
+
+
+
+        /* =========================================
+           ADD STEP
+        ========================================= */
+
+        function addStep() {
+
+            const input =
+                document.getElementById("stepInput");
+
+            const text =
+                input.value.trim();
+
+
+            if (text === "") {
+
+                alert("Please enter a step.");
+
+                input.focus();
+
+                return;
+
+            }
+
+
+            steps.push({
+
+                text: text,
+
+                completed: false
+
+            });
+
+
+            input.value = "";
+
+            input.focus();
+
+            displaySteps();
+
+        }
+
+
+
+        /* =========================================
+           ENTER KEY
+        ========================================= */
+
+        document
+            .getElementById("stepInput")
+            .addEventListener("keydown", function(event) {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    addStep();
+
+                }
+
+            });
+
+
+
+        /* =========================================
+           DISPLAY STEPS
+        ========================================= */
+
+        function displaySteps() {
+
+            const container =
+                document.getElementById("stepsContainer");
+
+            const emptyMessage =
+                document.getElementById("emptyMessage");
+
+
+            if (steps.length === 0) {
+
+                container.innerHTML = "";
+
+                container.appendChild(emptyMessage);
+
+                emptyMessage.style.display = "block";
+
+                return;
+
+            }
+
+
+            emptyMessage.style.display = "none";
+
+            container.innerHTML = "";
+
+
+            steps.forEach(function(step, index) {
+
+                const stepItem =
+                    document.createElement("div");
+
+                stepItem.className =
+                    "step-item";
+
+
+                stepItem.innerHTML = `
+
+                    <div class="step-number">
+                        ${index + 1}
+                    </div>
+
+                    <div class="step-text">
+                        ${escapeHTML(step.text)}
+                    </div>
+
+                    <button
+                        type="button"
+                        class="remove-btn"
+                        onclick="removeStep(${index})"
+                    >
+                        Remove
+                    </button>
+
+                `;
+
+
+                container.appendChild(stepItem);
+
+            });
+
+        }
+
+
+
+        /* =========================================
+           REMOVE STEP
+        ========================================= */
+
+        function removeStep(index) {
+
+            steps.splice(index, 1);
+
+            displaySteps();
+
+        }
+
+
+
+        /* =========================================
+           SAVE PLAN TO MYSQL
+        ========================================= */
+
+        async function savePlan() {
+
+
+            /* Check steps */
+
+            if (steps.length === 0) {
+
+                alert(
+                    "Please add at least one step before saving your plan."
+                );
+
+                return;
+
+            }
+
+
+
+            /* Check logged-in user */
+
+            const currentUser =
+                localStorage.getItem("futureMeCurrentUser");
+
+
+            if (!currentUser) {
+
+                alert("Please login first.");
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            const user =
+                JSON.parse(currentUser);
+
+
+
+            /* Check goal ID */
+
+            if (!goal.id) {
+
+                alert(
+                    "Goal ID not found. Please create the goal again."
+                );
+
+                window.location.href =
+                    "goal.html";
+
+                return;
+
+            }
+
+
+
+            /* =========================================
+               SEND DATA TO PHP
+            ========================================= */
+
+            const formData =
+                new FormData();
+
+
+            formData.append(
+                "user_id",
+                user.id
+            );
+
+
+            formData.append(
+                "goal_id",
+                goal.id
+            );
+
+
+            formData.append(
+                "type",
+                "Manual"
+            );
+
+
+            formData.append(
+                "steps",
+                JSON.stringify(steps)
+            );
+
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        "api/save_plan.php",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+
+                /* =========================================
+                   SUCCESS
+                ========================================= */
+
+                if (data.success) {
+
+
+                    /*
+                       Keep plan in localStorage temporarily.
+                       Existing progress page uses this.
+                    */
+
+                    const plan = {
+
+                        id: data.plan_id,
+
+                        type: "Manual",
+
+                        goalName: goal.name,
+
+                        steps: steps
+
+                    };
+
+
+                    localStorage.setItem(
+                        "futureMePlan",
+                        JSON.stringify(plan)
+                    );
+
+
+                    localStorage.setItem(
+                        "futureMeProgress",
+                        "0"
+                    );
+
+
+                    alert(data.message);
+
+
+                    window.location.href =
+                        "progress.html";
+
+
+                } else {
+
+
+                    alert(data.message);
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Plan Error:",
+                    error
+                );
+
+                alert(
+                    "Unable to connect to the server."
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           SECURITY
+        ========================================= */
+
+        function escapeHTML(text) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent =
+                text;
+
+            return div.innerHTML;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

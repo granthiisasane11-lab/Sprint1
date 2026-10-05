@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FutureMe | Create Goal</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f7f8ff;
+            color: #222;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #10145c;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+
+        .back-btn {
+            text-decoration: none;
+            color: #5b45d8;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 50px auto;
+        }
+
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .heading span {
+            color: #6b4ce6;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+
+        .heading h1 {
+            color: #10145c;
+            font-size: 38px;
+            margin: 10px 0;
+        }
+
+
+        .heading p {
+            color: #666;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           FORM CARD
+        ========================== */
+
+        .goal-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(70, 60, 150, 0.12);
+        }
+
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #6b4ce6;
+            box-shadow: 0 0 0 3px rgba(107, 76, 230, 0.1);
+        }
+
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+
+        /* =========================
+           DATE ROW
+        ========================== */
+
+        .date-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+
+        .btn {
+            padding: 14px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+        }
+
+
+        .back {
+            background: #eef0ff;
+            color: #5b45d8;
+        }
+
+
+        .next {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            flex: 1;
+        }
+
+
+        .next:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           INFO BOX
+        ========================== */
+
+        .info-box {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f1efff;
+            border-radius: 10px;
+            color: #5b45d8;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            .goal-card {
+                padding: 25px;
+            }
+
+
+            .heading h1 {
+                font-size: 30px;
+            }
+
+
+            .date-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+
+            .buttons {
+                flex-direction: column;
+            }
+
+
+            .back {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <a href="dashboard.html" class="logo">
+
+            <img
+                src="FutureMe_logo.png"
+                alt="FutureMe Logo"
+            >
+
+            FutureMe
+
+        </a>
+
+
+        <a
+            href="dashboard.html"
+            class="back-btn"
+        >
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="container">
+
+
+        <!-- HEADING -->
+
+        <div class="heading">
+
+            <span>
+                ✦ CREATE YOUR GOAL
+            </span>
+
+            <h1>
+                What Do You Want To Achieve?
+            </h1>
+
+            <p>
+                Define your goal today and let FutureMe help you plan your journey.
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             GOAL FORM
+        ========================= -->
+
+        <div class="goal-card">
+
+            <form id="goalForm">
+
+
+                <!-- GOAL NAME -->
+
+                <div class="form-group">
+
+                    <label for="goalName">
+                        Goal Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="goalName"
+                        placeholder="Example: Learn Python"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="goalDescription">
+                        Goal Description
+                    </label>
+
+                    <textarea
+                        id="goalDescription"
+                        placeholder="Describe what you want to achieve..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Goal Category
+                    </label>
+
+                    <select
+                        id="category"
+                        required
+                    >
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Education">
+                            Education
+                        </option>
+
+                        <option value="Career">
+                            Career
+                        </option>
+
+                        <option value="Health">
+                            Health & Fitness
+                        </option>
+
+                        <option value="Finance">
+                            Finance
+                        </option>
+
+                        <option value="Personal">
+                            Personal Development
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =========================
+                     DATES
+                ========================== -->
+
+                <div class="date-row">
+
+
+                    <!-- START DATE -->
+
+                    <div class="form-group">
+
+                        <label for="startDate">
+                            Start Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="startDate"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- TARGET DATE -->
+
+                    <div class="form-group">
+
+                        <label for="targetDate">
+                            Target Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="targetDate"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================
+                     INFO
+                ========================== -->
+
+                <div class="info-box">
+
+                    💡 Tip: Choose a realistic target date.
+                    FutureMe will use your goal and timeline to create
+                    your planning steps.
+
+                </div>
+
+
+
+                <!-- =========================
+                     BUTTONS
+                ========================== -->
+
+                <div class="buttons">
+
+                    <a
+                        href="dashboard.html"
+                        class="btn back"
+                    >
+                        ← Back
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="btn next"
+                    >
+                        Continue to Planner →
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        const startDateInput =
+            document.getElementById("startDate");
+
+        const targetDateInput =
+            document.getElementById("targetDate");
+
+
+        /* =========================
+           SET TODAY
+        ========================== */
+
+        const today =
+            new Date().toISOString().split("T")[0];
+
+
+        startDateInput.min = today;
+
+        targetDateInput.min = today;
+
+
+        /* =========================
+           START DATE CHANGE
+        ========================== */
+
+        startDateInput.addEventListener(
+            "change",
+            function () {
+
+                targetDateInput.min =
+                    this.value;
+
+
+                if (
+                    targetDateInput.value &&
+                    targetDateInput.value < this.value
+                ) {
+
+                    targetDateInput.value = "";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           FORM SUBMIT
+        ========================== */
+
+        document
+            .getElementById("goalForm")
+            .addEventListener(
+                "submit",
+                async function (event) {
+
+                    event.preventDefault();
+
+
+                    /* =========================
+                       GET FORM VALUES
+                    ========================== */
+
+                    const goalName =
+                        document
+                            .getElementById("goalName")
+                            .value
+                            .trim();
+
+
+                    const description =
+                        document
+                            .getElementById("goalDescription")
+                            .value
+                            .trim();
+
+
+                    const category =
+                        document
+                            .getElementById("category")
+                            .value;
+
+
+                    const startDate =
+                        document
+                            .getElementById("startDate")
+                            .value;
+
+
+                    const targetDate =
+                        document
+                            .getElementById("targetDate")
+                            .value;
+
+
+                    /* =========================
+                       VALIDATION
+                    ========================== */
+
+                    if (goalName === "") {
+
+                        alert(
+                            "Please enter your goal name."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (description === "") {
+
+                        alert(
+                            "Please describe your goal."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (category === "") {
+
+                        alert(
+                            "Please select a goal category."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (startDate === "") {
+
+                        alert(
+                            "Please select a start date."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (targetDate === "") {
+
+                        alert(
+                            "Please select a target date."
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (targetDate < startDate) {
+
+                        alert(
+                            "Target date cannot be before the start date."
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =========================
+                       GET LOGGED-IN USER
+                    ========================== */
+
+                    const currentUser =
+                        localStorage.getItem(
+                            "futureMeCurrentUser"
+                        );
+
+
+                    if (!currentUser) {
+
+                        alert(
+                            "Please login first."
+                        );
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+
+                    let user;
+
+
+                    try {
+
+                        user =
+                            JSON.parse(
+                                currentUser
+                            );
+
+                    } catch (error) {
+
+                        alert(
+                            "Login information is invalid. Please login again."
+                        );
+
+                        localStorage.removeItem(
+                            "futureMeCurrentUser"
+                        );
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+
+                    if (
+                        !user ||
+                        !user.id
+                    ) {
+
+                        alert(
+                            "User information is missing. Please login again."
+                        );
+
+                        window.location.href =
+                            "login.html";
+
+                        return;
+
+                    }
+
+
+                    /* =========================
+                       PREPARE PHP DATA
+                    ========================== */
+
+                    const formData =
+                        new FormData();
+
+
+                    formData.append(
+                        "user_id",
+                        user.id
+                    );
+
+
+                    formData.append(
+                        "name",
+                        goalName
+                    );
+
+
+                    formData.append(
+                        "description",
+                        description
+                    );
+
+
+                    formData.append(
+                        "category",
+                        category
+                    );
+
+
+                    formData.append(
+                        "start_date",
+                        startDate
+                    );
+
+
+                    formData.append(
+                        "target_date",
+                        targetDate
+                    );
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "api/save_goal.php",
+                                {
+                                    method: "POST",
+                                    body: formData
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (data.success) {
+
+
+                            /* =========================
+                               IMPORTANT:
+                               SAVE BOTH DATE FORMATS
+                            ========================== */
+
+                            const goal = {
+
+                                id:
+                                    data.goal_id,
+
+                                name:
+                                    goalName,
+
+                                description:
+                                    description,
+
+                                category:
+                                    category,
+
+
+                                /* Format used by AI Planner */
+
+                                start_date:
+                                    startDate,
+
+                                target_date:
+                                    targetDate,
+
+
+                                /* Keep old format too
+                                   for compatibility */
+
+                                startDate:
+                                    startDate,
+
+                                targetDate:
+                                    targetDate
+
+                            };
+
+
+                            /* =========================
+                               SAVE GOAL
+                            ========================== */
+
+                            localStorage.setItem(
+                                "futureMeGoal",
+                                JSON.stringify(goal)
+                            );
+
+
+                            /* =========================
+                               REMOVE OLD PLAN
+                            ========================== */
+
+                            localStorage.removeItem(
+                                "futureMePlan"
+                            );
+
+
+                            localStorage.removeItem(
+                                "futureMeProgress"
+                            );
+
+
+                            /* =========================
+                               SUCCESS
+                            ========================== */
+
+                            alert(
+                                data.message
+                            );
+
+
+                            window.location.href =
+                                "planner-choice.html";
+
+
+                        } else {
+
+                            alert(
+                                data.message ||
+                                "Unable to save the goal."
+                            );
+
+                        }
+
+                    } catch (error) {
+
+                        console.error(
+                            "Goal Error:",
+                            error
+                        );
+
+
+                        alert(
+                            "Unable to connect to the server."
+                        );
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

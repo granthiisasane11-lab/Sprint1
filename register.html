@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FutureMe | Register</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(37, 99, 235, 0.15),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(124, 58, 237, 0.15),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f9faff,
+                    #eef2ff
+                );
+        }
+
+        .register-container {
+            width: 90%;
+            max-width: 1000px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: white;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(40, 50, 150, 0.15);
+        }
+
+        /* LEFT SIDE */
+
+        .register-left {
+            padding: 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #10186f,
+                    #4338ca,
+                    #6d28d9
+                );
+
+            color: white;
+        }
+
+        .register-left img {
+            width: 170px;
+            margin-bottom: 35px;
+        }
+
+        .register-left h1 {
+            font-size: 42px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .register-left h1 span {
+            color: #b9b2ff;
+        }
+
+        .register-left p {
+            color: #e4e7ff;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .register-benefits {
+            margin-top: 30px;
+        }
+
+        .register-benefits p {
+            margin-bottom: 12px;
+        }
+
+        /* RIGHT SIDE */
+
+        .register-right {
+            padding: 50px;
+        }
+
+        .register-right h2 {
+            color: #10165c;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .register-subtitle {
+            color: #687086;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* FORM */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            color: #17216b;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1px solid #dfe2f3;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #5b45d8;
+
+            box-shadow:
+                0 0 0 3px rgba(91, 69, 216, 0.10);
+        }
+
+        /* BUTTON */
+
+        .register-submit {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .register-submit:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(79, 70, 229, 0.25);
+        }
+
+        /* LOGIN LINK */
+
+        .login-text {
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #687086;
+
+            font-size: 14px;
+        }
+
+        .login-text a {
+            color: #4f46e5;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            color: #7c3aed;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .register-container {
+                grid-template-columns: 1fr;
+
+                width: 92%;
+            }
+
+            .register-left {
+                padding: 35px;
+            }
+
+            .register-left img {
+                width: 140px;
+            }
+
+            .register-left h1 {
+                font-size: 32px;
+            }
+
+            .register-right {
+                padding: 35px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="register-left">
+
+            <img src="FutureMe_logo.png" alt="FutureMe Logo">
+
+            <h1>
+                Start Building
+                <span>Your Future.</span>
+            </h1>
+
+            <p>
+                Create your FutureMe account and start
+                turning your dreams into achievable goals.
+            </p>
+
+            <div class="register-benefits">
+
+                <p>🎯 Set and manage your goals</p>
+
+                <p>📋 Create step-by-step plans</p>
+
+                <p>📈 Track your progress</p>
+
+                <p>💌 Create future capsules</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="register-right">
+
+            <h2>Create Account</h2>
+
+            <p class="register-subtitle">
+                Register now to start your FutureMe journey.
+            </p>
+
+
+            <!-- REGISTRATION FORM -->
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="fullname">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullname"
+                        name="fullname"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Create a username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirm-password">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        name="confirm-password"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="register-submit">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+document.getElementById("registerForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const fullname = document.getElementById("fullname").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    if (fullname === "" || email === "" || username === "" || password === "") {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("fullname", fullname);
+    formData.append("email", email);
+    formData.append("username", username);
+    formData.append("password", password);
+
+    try {
+        const response = await fetch("api/register.php", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.message);
+            window.location.href = "login.html";
+        } else {
+            alert(data.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Unable to connect to the server.");
+    }
+});
+</script>
+
+</body>
+
+</html>

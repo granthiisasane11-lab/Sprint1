@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FutureMe | Progress</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f7f8ff;
+            color: #222;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            background: white;
+            padding: 16px 7%;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #10145c;
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+
+            object-fit: contain;
+        }
+
+
+        .back-btn {
+            text-decoration: none;
+
+            background: #eef0ff;
+
+            color: #5b45d8;
+
+            padding: 10px 18px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+
+            margin: 45px auto;
+        }
+
+
+        /* =========================
+           PAGE HEADER
+        ========================== */
+
+        .page-header {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .page-header span {
+            color: #6b4ce6;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .page-header h1 {
+            color: #10145c;
+
+            font-size: 38px;
+
+            margin: 10px 0;
+        }
+
+
+        .page-header p {
+            color: #666;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           GOAL CARD
+        ========================== */
+
+        .goal-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(70, 60, 150, 0.10);
+
+            margin-bottom: 25px;
+        }
+
+
+        .goal-card h2 {
+            color: #10145c;
+
+            font-size: 25px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .goal-description {
+            color: #666;
+
+            margin-bottom: 20px;
+        }
+
+
+        .goal-details {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .detail-box {
+            background: #f5f5ff;
+
+            padding: 15px;
+
+            border-radius: 12px;
+        }
+
+
+        .detail-box small {
+            display: block;
+
+            color: #777;
+
+            margin-bottom: 5px;
+        }
+
+
+        .detail-box strong {
+            color: #10145c;
+        }
+
+
+        /* =========================
+           PROGRESS CARD
+        ========================== */
+
+        .progress-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(70, 60, 150, 0.10);
+
+            margin-bottom: 25px;
+        }
+
+
+        .progress-heading {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 12px;
+        }
+
+
+        .progress-heading h2 {
+            color: #10145c;
+
+            font-size: 23px;
+        }
+
+
+        .percentage {
+            color: #673de6;
+
+            font-size: 25px;
+
+            font-weight: bold;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+
+            height: 16px;
+
+            background: #e8e8f5;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            border-radius: 20px;
+
+            transition: width 0.3s ease;
+        }
+
+
+        .progress-message {
+            text-align: center;
+
+            margin-top: 12px;
+
+            color: #666;
+        }
+
+
+        /* =========================
+           STAT CARDS
+        ========================== */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .stat-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(70, 60, 150, 0.08);
+        }
+
+
+        .stat-number {
+            display: block;
+
+            color: #673de6;
+
+            font-size: 32px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+
+        .stat-label {
+            color: #666;
+        }
+
+
+        /* =========================
+           STEPS CARD
+        ========================== */
+
+        .steps-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(70, 60, 150, 0.10);
+        }
+
+
+        .steps-card h2 {
+            color: #10145c;
+
+            font-size: 25px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .steps-subtitle {
+            color: #666;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           CHECKBOX STEP
+        ========================== */
+
+        .step-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+        }
+
+
+        .step-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 18px;
+
+            background: #f8f8ff;
+
+            border: 1px solid #e5e5f5;
+
+            border-radius: 14px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .step-item:hover {
+            border-color: #7c3aed;
+
+            background: #f5f2ff;
+        }
+
+
+        .step-item.completed {
+            background: #f0efff;
+
+            border-color: #b8a8ff;
+        }
+
+
+        /* Checkbox */
+
+        .step-checkbox {
+            width: 22px;
+
+            height: 22px;
+
+            min-width: 22px;
+
+            accent-color: #6b4ce6;
+
+            cursor: pointer;
+        }
+
+
+        .step-number {
+            width: 35px;
+
+            height: 35px;
+
+            min-width: 35px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: #e9e5ff;
+
+            color: #5b45d8;
+
+            border-radius: 50%;
+
+            font-weight: bold;
+        }
+
+
+        .step-text {
+            color: #222;
+
+            font-size: 16px;
+
+            line-height: 1.5;
+        }
+
+
+        .step-item.completed .step-text {
+            color: #777;
+
+            text-decoration: line-through;
+        }
+
+
+        /* =========================
+           SAVE BUTTON
+        ========================== */
+
+        .save-section {
+            margin-top: 25px;
+
+            text-align: center;
+        }
+
+
+        .save-btn {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .save-btn:disabled {
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================== */
+
+        .message {
+            margin-top: 15px;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            display: none;
+
+            text-align: center;
+        }
+
+
+        .message.success {
+            display: block;
+
+            background: #eaf8ef;
+
+            color: #18733c;
+        }
+
+
+        .message.error {
+            display: block;
+
+            background: #fff0f0;
+
+            color: #d93030;
+        }
+
+
+        /* =========================
+           COMPLETE MESSAGE
+        ========================== */
+
+        .goal-complete {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            background: #f1efff;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            color: #5b45d8;
+        }
+
+
+        .goal-complete.show {
+            display: block;
+        }
+
+
+        .goal-complete h3 {
+            margin-bottom: 6px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            .goal-details {
+                grid-template-columns: 1fr;
+            }
+
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+
+            .goal-card,
+            .progress-card,
+            .steps-card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a
+                href="dashboard.html"
+                class="logo"
+            >
+
+                <img
+                    src="FutureMe_logo.png"
+                    alt="FutureMe Logo"
+                >
+
+                FutureMe
+
+            </a>
+
+
+            <a
+                href="dashboard.html"
+                class="back-btn"
+            >
+                ← Dashboard
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="container">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <span>
+                ✦ TRACK YOUR JOURNEY
+            </span>
+
+            <h1>
+                Your Progress
+            </h1>
+
+            <p>
+                Complete each step and watch your progress grow.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             GOAL
+        ========================== -->
+
+        <section class="goal-card">
+
+            <h2 id="goalName">
+                Loading goal...
+            </h2>
+
+
+            <p
+                class="goal-description"
+                id="goalDescription"
+            >
+                Loading...
+            </p>
+
+
+            <div class="goal-details">
+
+
+                <div class="detail-box">
+
+                    <small>
+                        Category
+                    </small>
+
+                    <strong id="goalCategory">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <small>
+                        Start Date
+                    </small>
+
+                    <strong id="startDate">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <small>
+                        Target Date
+                    </small>
+
+                    <strong id="targetDate">
+                        -
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             OVERALL PROGRESS
+        ========================== -->
+
+        <section class="progress-card">
+
+            <div class="progress-heading">
+
+                <h2>
+                    Overall Progress
+                </h2>
+
+                <span
+                    class="percentage"
+                    id="percentage"
+                >
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                ></div>
+
+            </div>
+
+
+            <p
+                class="progress-message"
+                id="progressMessage"
+            >
+                Your journey has just started. Keep going!
+            </p>
+
+
+            <div
+                class="goal-complete"
+                id="goalComplete"
+            >
+
+                <h3>
+                    🎉 Goal Completed!
+                </h3>
+
+                <p>
+                    Amazing! You completed all the planned steps.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             STATISTICS
+        ========================== -->
+
+        <section class="stats">
+
+
+            <div class="stat-card">
+
+                <span
+                    class="stat-number"
+                    id="completedCount"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    Completed Steps
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span
+                    class="stat-number"
+                    id="totalCount"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    Planned Steps
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span
+                    class="stat-number"
+                    id="remainingCount"
+                >
+                    0
+                </span>
+
+                <span class="stat-label">
+                    Remaining Steps
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             CHECKBOX STEPS
+        ========================== -->
+
+        <section class="steps-card">
+
+            <h2>
+                🎯 Your Action Steps
+            </h2>
+
+
+            <p class="steps-subtitle">
+                Tick a checkbox when you complete that step.
+            </p>
+
+
+            <div
+                class="step-list"
+                id="stepList"
+            >
+
+                <!-- AI / Manual steps appear here -->
+
+            </div>
+
+
+            <!-- SAVE -->
+
+            <div class="save-section">
+
+                <button
+                    type="button"
+                    class="save-btn"
+                    id="saveProgressBtn"
+                >
+                    Save Progress
+                </button>
+
+            </div>
+
+
+            <div
+                class="message"
+                id="message"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        /* =========================
+           GLOBAL DATA
+        ========================== */
+
+        let currentUser = null;
+
+        let currentGoal = null;
+
+        let currentPlan = null;
+
+        let steps = [];
+
+
+
+        /* =========================
+           ELEMENTS
+        ========================== */
+
+        const goalNameElement =
+            document.getElementById("goalName");
+
+        const goalDescriptionElement =
+            document.getElementById("goalDescription");
+
+        const goalCategoryElement =
+            document.getElementById("goalCategory");
+
+        const startDateElement =
+            document.getElementById("startDate");
+
+        const targetDateElement =
+            document.getElementById("targetDate");
+
+        const stepList =
+            document.getElementById("stepList");
+
+        const percentageElement =
+            document.getElementById("percentage");
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        const progressMessage =
+            document.getElementById("progressMessage");
+
+        const completedCount =
+            document.getElementById("completedCount");
+
+        const totalCount =
+            document.getElementById("totalCount");
+
+        const remainingCount =
+            document.getElementById("remainingCount");
+
+        const saveProgressBtn =
+            document.getElementById("saveProgressBtn");
+
+        const messageElement =
+            document.getElementById("message");
+
+        const goalComplete =
+            document.getElementById("goalComplete");
+
+
+
+        /* =========================
+           FORMAT DATE
+        ========================== */
+
+        function formatDate(dateValue) {
+
+            if (!dateValue) {
+                return "Not specified";
+            }
+
+
+            const parts =
+                dateValue.split("-");
+
+
+            if (parts.length !== 3) {
+                return dateValue;
+            }
+
+
+            return (
+                parts[2] +
+                "/" +
+                parts[1] +
+                "/" +
+                parts[0]
+            );
+
+        }
+
+
+
+        /* =========================
+           SHOW MESSAGE
+        ========================== */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            messageElement.textContent =
+                text;
+
+            messageElement.className =
+                "message " + type;
+
+        }
+
+
+
+        /* =========================
+           LOAD USER
+        ========================== */
+
+        function loadUser() {
+
+            const userData =
+                localStorage.getItem(
+                    "futureMeCurrentUser"
+                );
+
+
+            if (!userData) {
+
+                window.location.href =
+                    "login.html";
+
+                return false;
+
+            }
+
+
+            try {
+
+                currentUser =
+                    JSON.parse(userData);
+
+            } catch (error) {
+
+                localStorage.removeItem(
+                    "futureMeCurrentUser"
+                );
+
+                window.location.href =
+                    "login.html";
+
+                return false;
+
+            }
+
+
+            if (
+                !currentUser ||
+                !currentUser.id
+            ) {
+
+                window.location.href =
+                    "login.html";
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+
+
+        /* =========================
+           LOAD GOAL
+        ========================== */
+
+        function loadGoal() {
+
+            const goalData =
+                localStorage.getItem(
+                    "futureMeGoal"
+                );
+
+
+            if (!goalData) {
+
+                showMessage(
+                    "No goal found. Please create a goal first.",
+                    "error"
+                );
+
+                return false;
+
+            }
+
+
+            try {
+
+                currentGoal =
+                    JSON.parse(goalData);
+
+            } catch (error) {
+
+                showMessage(
+                    "Your saved goal data is invalid.",
+                    "error"
+                );
+
+                return false;
+
+            }
+
+
+            goalNameElement.textContent =
+                currentGoal.name ||
+                "My Goal";
+
+
+            goalDescriptionElement.textContent =
+                currentGoal.description ||
+                "No description";
+
+
+            goalCategoryElement.textContent =
+                currentGoal.category ||
+                "Other";
+
+
+            startDateElement.textContent =
+                formatDate(
+                    currentGoal.start_date ||
+                    currentGoal.startDate ||
+                    ""
+                );
+
+
+            targetDateElement.textContent =
+                formatDate(
+                    currentGoal.target_date ||
+                    currentGoal.targetDate ||
+                    ""
+                );
+
+
+            return true;
+
+        }
+
+
+
+        /* =========================
+           LOAD PLAN
+        ========================== */
+
+        function loadPlan() {
+
+            const planData =
+                localStorage.getItem(
+                    "futureMePlan"
+                );
+
+
+            if (!planData) {
+
+                showMessage(
+                    "No plan found. Please create an AI or Manual plan first.",
+                    "error"
+                );
+
+                return false;
+
+            }
+
+
+            try {
+
+                currentPlan =
+                    JSON.parse(planData);
+
+            } catch (error) {
+
+                showMessage(
+                    "Your saved plan data is invalid.",
+                    "error"
+                );
+
+                return false;
+
+            }
+
+
+            if (
+                !currentPlan ||
+                !Array.isArray(
+                    currentPlan.steps
+                )
+            ) {
+
+                showMessage(
+                    "No steps were found in your plan.",
+                    "error"
+                );
+
+                return false;
+
+            }
+
+
+            steps =
+                currentPlan.steps.map(
+                    function(step, index) {
+
+                        return {
+
+                            order:
+                                index + 1,
+
+                            text:
+                                typeof step === "string"
+                                    ? step
+                                    : (
+                                        step.text ||
+                                        step.step ||
+                                        "Unnamed step"
+                                    ),
+
+                            completed:
+                                step.completed === true
+
+                        };
+
+                    }
+                );
+
+
+            renderSteps();
+
+            updateProgress();
+
+            return true;
+
+        }
+
+
+
+        /* =========================
+           RENDER CHECKBOX STEPS
+        ========================== */
+
+        function renderSteps() {
+
+            stepList.innerHTML = "";
+
+
+            if (steps.length === 0) {
+
+                stepList.innerHTML = `
+                    <p style="
+                        color:#777;
+                        text-align:center;
+                        padding:20px;
+                    ">
+                        No steps found.
+                    </p>
+                `;
+
+                return;
+
+            }
+
+
+            steps.forEach(
+                function(step) {
+
+
+                    const label =
+                        document.createElement(
+                            "label"
+                        );
+
+
+                    label.className =
+                        "step-item";
+
+
+                    if (step.completed) {
+
+                        label.classList.add(
+                            "completed"
+                        );
+
+                    }
+
+
+                    /* =========================
+                       CHECKBOX
+                    ========================== */
+
+                    const checkbox =
+                        document.createElement(
+                            "input"
+                        );
+
+
+                    checkbox.type =
+                        "checkbox";
+
+
+                    checkbox.className =
+                        "step-checkbox";
+
+
+                    checkbox.checked =
+                        step.completed;
+
+
+                    checkbox.dataset.order =
+                        step.order;
+
+
+                    /* =========================
+                       NUMBER
+                    ========================== */
+
+                    const number =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    number.className =
+                        "step-number";
+
+
+                    number.textContent =
+                        step.order;
+
+
+                    /* =========================
+                       TEXT
+                    ========================== */
+
+                    const text =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    text.className =
+                        "step-text";
+
+
+                    text.textContent =
+                        step.text;
+
+
+                    /* =========================
+                       CHECKBOX CHANGE
+                    ========================== */
+
+                    checkbox.addEventListener(
+                        "change",
+                        function() {
+
+                            step.completed =
+                                checkbox.checked;
+
+
+                            if (
+                                checkbox.checked
+                            ) {
+
+                                label.classList.add(
+                                    "completed"
+                                );
+
+                            } else {
+
+                                label.classList.remove(
+                                    "completed"
+                                );
+
+                            }
+
+
+                            updateProgress();
+
+                        }
+                    );
+
+
+                    label.appendChild(
+                        checkbox
+                    );
+
+
+                    label.appendChild(
+                        number
+                    );
+
+
+                    label.appendChild(
+                        text
+                    );
+
+
+                    stepList.appendChild(
+                        label
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================
+           UPDATE PROGRESS
+        ========================== */
+
+        function updateProgress() {
+
+            const total =
+                steps.length;
+
+
+            const completed =
+                steps.filter(
+                    function(step) {
+                        return step.completed;
+                    }
+                ).length;
+
+
+            const remaining =
+                Math.max(
+                    total - completed,
+                    0
+                );
+
+
+            let percentage = 0;
+
+
+            if (total > 0) {
+
+                percentage =
+                    Math.round(
+                        (
+                            completed /
+                            total
+                        ) * 100
+                    );
+
+            }
+
+
+            /* =========================
+               UPDATE NUMBERS
+            ========================== */
+
+            percentageElement.textContent =
+                percentage + "%";
+
+
+            progressFill.style.width =
+                percentage + "%";
+
+
+            completedCount.textContent =
+                completed;
+
+
+            totalCount.textContent =
+                total;
+
+
+            remainingCount.textContent =
+                remaining;
+
+
+            /* =========================
+               PROGRESS MESSAGE
+            ========================== */
+
+            if (percentage === 0) {
+
+                progressMessage.textContent =
+                    "Your journey has just started. Keep going!";
+
+            } else if (percentage < 50) {
+
+                progressMessage.textContent =
+                    "Great start! Keep taking small steps.";
+
+            } else if (percentage < 100) {
+
+                progressMessage.textContent =
+                    "You're making great progress. Keep going!";
+
+            } else {
+
+                progressMessage.textContent =
+                    "Amazing! You completed your entire plan!";
+
+            }
+
+
+            /* =========================
+               COMPLETE MESSAGE
+            ========================== */
+
+            if (
+                total > 0 &&
+                percentage === 100
+            ) {
+
+                goalComplete.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                goalComplete.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================
+           SAVE PROGRESS
+        ========================== */
+
+        async function saveProgress() {
+
+
+            if (
+                !currentUser ||
+                !currentUser.id
+            ) {
+
+                showMessage(
+                    "User information is missing. Please login again.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !currentGoal ||
+                !currentGoal.id
+            ) {
+
+                showMessage(
+                    "Goal information is missing.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !currentPlan ||
+                !currentPlan.id &&
+                !currentPlan.plan_id
+            ) {
+
+                showMessage(
+                    "Plan information is missing.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const planId =
+                currentPlan.plan_id ||
+                currentPlan.id;
+
+
+            /* =========================
+               GET COMPLETED ORDERS
+            ========================== */
+
+            const completedOrders =
+                steps
+                    .filter(
+                        function(step) {
+                            return step.completed;
+                        }
+                    )
+                    .map(
+                        function(step) {
+                            return step.order;
+                        }
+                    );
+
+
+            saveProgressBtn.disabled =
+                true;
+
+
+            saveProgressBtn.textContent =
+                "Saving Progress...";
+
+
+            messageElement.className =
+                "message";
+
+
+            try {
+
+
+                const formData =
+                    new FormData();
+
+
+                formData.append(
+                    "user_id",
+                    currentUser.id
+                );
+
+
+                formData.append(
+                    "goal_id",
+                    currentGoal.id
+                );
+
+
+                formData.append(
+                    "plan_id",
+                    planId
+                );
+
+
+                formData.append(
+                    "completed_orders",
+                    JSON.stringify(
+                        completedOrders
+                    )
+                );
+
+
+                const response =
+                    await fetch(
+                        "api/update_progress.php",
+                        {
+                            method: "POST",
+
+                            body: formData
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    throw new Error(
+                        data.message ||
+                        "Could not save progress."
+                    );
+
+                }
+
+
+                /* =========================
+                   UPDATE LOCAL PLAN
+                ========================== */
+
+                currentPlan.steps =
+                    steps.map(
+                        function(step) {
+
+                            return {
+
+                                text:
+                                    step.text,
+
+                                completed:
+                                    step.completed
+
+                            };
+
+                        }
+                    );
+
+
+                localStorage.setItem(
+                    "futureMePlan",
+                    JSON.stringify(
+                        currentPlan
+                    )
+                );
+
+
+                /* =========================
+                   SAVE PROGRESS CACHE
+                ========================== */
+
+                localStorage.setItem(
+                    "futureMeProgress",
+                    JSON.stringify({
+
+                        percentage:
+                            data.percentage,
+
+                        completed_steps:
+                            data.completed_steps,
+
+                        total_steps:
+                            data.total_steps,
+
+                        remaining_steps:
+                            data.remaining_steps
+
+                    })
+                );
+
+
+                showMessage(
+                    "Progress saved successfully! ✓",
+                    "success"
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Progress Error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "Unable to save progress.",
+                    "error"
+                );
+
+            }
+
+
+            saveProgressBtn.disabled =
+                false;
+
+
+            saveProgressBtn.textContent =
+                "Save Progress";
+
+        }
+
+
+
+        /* =========================
+           SAVE BUTTON
+        ========================== */
+
+        saveProgressBtn.addEventListener(
+            "click",
+            saveProgress
+        );
+
+
+
+        /* =========================
+           START PAGE
+        ========================== */
+
+        if (
+            loadUser() &&
+            loadGoal() &&
+            loadPlan()
+        ) {
+
+            updateProgress();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

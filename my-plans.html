@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Plans | FutureMe</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f7f8ff;
+            color: #222;
+        }
+
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #5b45d8;
+        }
+
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+
+        .back-btn {
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 11px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+
+        .container {
+            width: 90%;
+            max-width: 950px;
+            margin: 45px auto;
+        }
+
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        .page-title h1 {
+            font-size: 38px;
+            color: #10145c;
+            margin-bottom: 10px;
+        }
+
+
+        .page-title p {
+            color: #666;
+        }
+
+
+        .plan-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(76, 61, 180, 0.12);
+            margin-bottom: 25px;
+        }
+
+
+        .goal-name {
+            font-size: 27px;
+            color: #5b45d8;
+            margin-bottom: 20px;
+        }
+
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+
+        .detail-box {
+            background: #f4f3ff;
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+
+        .detail-box span {
+            display: block;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+
+        .detail-box strong {
+            color: #222;
+        }
+
+
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 20px;
+            transition: 0.4s;
+        }
+
+
+        .steps-title {
+            font-size: 22px;
+            color: #10145c;
+            margin-bottom: 15px;
+        }
+
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f8ff;
+            border-radius: 12px;
+            border: 1px solid #eeeeff;
+        }
+
+
+        .step-number {
+            min-width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+
+        .step-text {
+            flex: 1;
+        }
+
+
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+
+        .status {
+            font-size: 13px;
+            font-weight: bold;
+            color: #5b45d8;
+        }
+
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+
+        .btn {
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            padding: 13px 22px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+
+        .primary {
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+
+        .secondary {
+            color: #5b45d8;
+            background: #eeeaff;
+        }
+
+
+        .no-plan {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(76, 61, 180, 0.12);
+        }
+
+
+        .no-plan h2 {
+            color: #10145c;
+            margin-bottom: 10px;
+        }
+
+
+        .no-plan p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+
+        .loading {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 20px;
+            color: #5b45d8;
+            box-shadow: 0 8px 25px rgba(76, 61, 180, 0.12);
+        }
+
+
+        .error-message {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 20px;
+            color: #c0392b;
+            box-shadow: 0 8px 25px rgba(76, 61, 180, 0.12);
+        }
+
+
+        @media (max-width: 700px) {
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+
+            .buttons {
+                flex-direction: column;
+            }
+
+
+            .page-title h1 {
+                font-size: 30px;
+            }
+
+
+            .step {
+                align-items: flex-start;
+            }
+
+
+            .status {
+                margin-left: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+
+        <img
+            src="FutureMe_logo.png"
+            alt="FutureMe Logo"
+        >
+
+        <span>
+            FutureMe
+        </span>
+
+    </div>
+
+
+    <a
+        href="dashboard.html"
+        class="back-btn"
+    >
+        ← Dashboard
+    </a>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <div class="page-title">
+
+        <h1>
+            My Plans
+        </h1>
+
+        <p>
+            Track your goal and the steps you have planned.
+        </p>
+
+    </div>
+
+
+    <div id="planContainer">
+
+        <div class="loading">
+            Loading your plans...
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =========================
+       CHECK LOGIN
+    ========================== */
+
+    const loggedIn =
+        localStorage.getItem(
+            "futureMeLoggedIn"
+        );
+
+
+    if (loggedIn !== "true") {
+
+        alert(
+            "Please login first."
+        );
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+
+    /* =========================
+       GET CURRENT USER
+    ========================== */
+
+    const savedUser =
+        localStorage.getItem(
+            "futureMeCurrentUser"
+        );
+
+
+    let currentUser = null;
+
+
+    if (savedUser) {
+
+        try {
+
+            currentUser =
+                JSON.parse(savedUser);
+
+        } catch (error) {
+
+            console.error(
+                "Invalid user data."
+            );
+
+        }
+
+    }
+
+
+
+    const container =
+        document.getElementById(
+            "planContainer"
+        );
+
+
+
+    /* =========================
+       LOAD DATA FROM MYSQL
+    ========================== */
+
+    async function loadPlans() {
+
+
+        if (
+            !currentUser ||
+            !currentUser.id
+        ) {
+
+            container.innerHTML = `
+                <div class="error-message">
+                    <h2>
+                        User information not found
+                    </h2>
+
+                    <p>
+                        Please login again.
+                    </p>
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    "api/get_user_data.php?user_id="
+                    +
+                    encodeURIComponent(
+                        currentUser.id
+                    )
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Server error: "
+                    +
+                    response.status
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (!data.success) {
+
+                container.innerHTML = `
+                    <div class="error-message">
+
+                        <h2>
+                            Unable to Load Plans
+                        </h2>
+
+                        <p>
+                            ${escapeHTML(
+                                data.message ||
+                                "Something went wrong."
+                            )}
+                        </p>
+
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               CHECK GOALS
+            ========================== */
+
+            const goals =
+                data.goals || [];
+
+
+            const plans =
+                data.plans || [];
+
+
+            const progressData =
+                data.progress || [];
+
+
+            if (
+                goals.length === 0 ||
+                plans.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="no-plan">
+
+                        <h2>
+                            No Plan Found
+                        </h2>
+
+                        <p>
+                            You have not created a goal and plan yet.
+                        </p>
+
+                        <a
+                            href="goal.html"
+                            class="btn primary"
+                        >
+                            Create Goal
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               BUILD PLAN CARDS
+            ========================== */
+
+            let html = "";
+
+
+            plans.forEach(
+                (plan) => {
+
+
+                    const goal =
+                        goals.find(
+                            item =>
+                                Number(
+                                    item.id
+                                ) ===
+                                Number(
+                                    plan.goal_id
+                                )
+                        );
+
+
+                    if (!goal) {
+
+                        return;
+
+                    }
+
+
+                    const steps =
+                        plan.steps || [];
+
+
+                    let completedSteps = 0;
+
+
+                    steps.forEach(
+                        step => {
+
+                            if (
+                                Number(
+                                    step.completed
+                                ) === 1
+                            ) {
+
+                                completedSteps++;
+
+                            }
+
+                        }
+                    );
+
+
+                    const totalSteps =
+                        steps.length;
+
+
+                    let percentage = 0;
+
+
+                    /*
+                     * First try the progress
+                     * saved in MySQL.
+                     */
+
+                    const progressItem =
+                        progressData.find(
+                            item =>
+                                Number(
+                                    item.goal_id
+                                ) ===
+                                Number(
+                                    goal.id
+                                )
+                        );
+
+
+                    if (progressItem) {
+
+                        percentage =
+                            Number(
+                                progressItem.percentage
+                            ) || 0;
+
+                    } else if (
+                        totalSteps > 0
+                    ) {
+
+                        percentage =
+                            Math.round(
+                                (
+                                    completedSteps /
+                                    totalSteps
+                                ) * 100
+                            );
+
+                    }
+
+
+                    if (percentage < 0) {
+                        percentage = 0;
+                    }
+
+
+                    if (percentage > 100) {
+                        percentage = 100;
+                    }
+
+
+
+                    /* =========================
+                       SAVE LATEST DATA LOCALLY
+                    ========================== */
+
+                    /*
+                     * This keeps other existing
+                     * FutureMe pages working while
+                     * MySQL is now the main source.
+                     */
+
+                    localStorage.setItem(
+                        "futureMeGoal",
+                        JSON.stringify({
+
+                            id:
+                                Number(
+                                    goal.id
+                                ),
+
+                            name:
+                                goal.name,
+
+                            description:
+                                goal.description,
+
+                            category:
+                                goal.category,
+
+                            startDate:
+                                goal.start_date,
+
+                            targetDate:
+                                goal.target_date
+
+                        })
+                    );
+
+
+                    localStorage.setItem(
+                        "futureMePlan",
+                        JSON.stringify({
+
+                            id:
+                                Number(
+                                    plan.id
+                                ),
+
+                            type:
+                                plan.type,
+
+                            goalName:
+                                goal.name,
+
+                            steps:
+                                steps.map(
+                                    step => ({
+
+                                        id:
+                                            Number(
+                                                step.id
+                                            ),
+
+                                        text:
+                                            step.text,
+
+                                        completed:
+                                            Number(
+                                                step.completed
+                                            ) === 1,
+
+                                        order:
+                                            Number(
+                                                step.order
+                                            )
+
+                                    })
+                                )
+
+                        })
+                    );
+
+
+                    localStorage.setItem(
+                        "futureMeProgress",
+                        String(
+                            percentage
+                        )
+                    );
+
+
+
+                    /* =========================
+                       CREATE STEPS HTML
+                    ========================== */
+
+                    let stepsHTML = "";
+
+
+                    if (
+                        steps.length === 0
+                    ) {
+
+                        stepsHTML = `
+
+                            <p
+                                style="
+                                    color:#777;
+                                    margin-bottom:10px;
+                                "
+                            >
+                                No steps available in this plan.
+                            </p>
+
+                        `;
+
+                    } else {
+
+
+                        steps.forEach(
+                            (step, index) => {
+
+
+                                const completed =
+                                    Number(
+                                        step.completed
+                                    ) === 1;
+
+
+                                const completedClass =
+                                    completed
+                                    ? "completed"
+                                    : "";
+
+
+                                const statusText =
+                                    completed
+                                    ? "Completed"
+                                    : "Pending";
+
+
+                                stepsHTML += `
+
+                                    <div class="step">
+
+                                        <div class="step-number">
+                                            ${index + 1}
+                                        </div>
+
+
+                                        <div
+                                            class="
+                                                step-text
+                                                ${completedClass}
+                                            "
+                                        >
+                                            ${escapeHTML(
+                                                step.text
+                                            )}
+                                        </div>
+
+
+                                        <div class="status">
+                                            ${statusText}
+                                        </div>
+
+                                    </div>
+
+                                `;
+
+                            }
+                        );
+
+                    }
+
+
+
+                    /* =========================
+                       CREATE PLAN CARD
+                    ========================== */
+
+                    html += `
+
+                        <div class="plan-card">
+
+                            <div class="goal-name">
+
+                                ${escapeHTML(
+                                    goal.name
+                                )}
+
+                            </div>
+
+
+                            <div class="details">
+
+
+                                <div class="detail-box">
+
+                                    <span>
+                                        Category
+                                    </span>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            goal.category
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div class="detail-box">
+
+                                    <span>
+                                        Start Date
+                                    </span>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            goal.start_date
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div class="detail-box">
+
+                                    <span>
+                                        Target Date
+                                    </span>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            goal.target_date
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="progress-title">
+
+                                <span>
+                                    Plan Progress
+                                </span>
+
+                                <span>
+                                    ${percentage}%
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="progress-bar">
+
+                                <div
+                                    class="progress-fill"
+                                    style="
+                                        width:${percentage}%;
+                                    "
+                                ></div>
+
+                            </div>
+
+
+
+                            <h2 class="steps-title">
+                                Your Plan Steps
+                            </h2>
+
+
+                            ${stepsHTML}
+
+
+
+                            <div class="buttons">
+
+                                <a
+                                    href="progress.html"
+                                    class="btn primary"
+                                >
+                                    View Progress
+                                </a>
+
+
+                                <a
+                                    href="planner-choice.html"
+                                    class="btn secondary"
+                                >
+                                    Change Plan
+                                </a>
+
+                            </div>
+
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+
+
+            /* =========================
+               DISPLAY PLANS
+            ========================== */
+
+            if (html.trim() === "") {
+
+                container.innerHTML = `
+
+                    <div class="no-plan">
+
+                        <h2>
+                            No Plan Found
+                        </h2>
+
+                        <p>
+                            You have not created a goal and plan yet.
+                        </p>
+
+                        <a
+                            href="goal.html"
+                            class="btn primary"
+                        >
+                            Create Goal
+                        </a>
+
+                    </div>
+
+                `;
+
+            } else {
+
+                container.innerHTML =
+                    html;
+
+            }
+
+
+        } catch (error) {
+
+
+            console.error(
+                "My Plans loading error:",
+                error
+            );
+
+
+            container.innerHTML = `
+
+                <div class="error-message">
+
+                    <h2>
+                        Unable to Load Plans
+                    </h2>
+
+                    <p>
+                        Please make sure XAMPP Apache
+                        and MySQL are running.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================== */
+
+    function escapeHTML(value) {
+
+        return String(
+            value ?? ""
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+    }
+
+
+
+    /* =========================
+       START
+    ========================== */
+
+    if (
+        loggedIn === "true" &&
+        currentUser
+    ) {
+
+        loadPlans();
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

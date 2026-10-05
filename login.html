@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FutureMe | Login</title>
+
+    <style>
+
+        /* ================================
+           GLOBAL
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(37, 99, 235, 0.15),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(124, 58, 237, 0.15),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f9faff,
+                    #eef2ff
+                );
+        }
+
+
+        /* ================================
+           LOGIN CONTAINER
+        ================================= */
+
+        .login-container {
+            width: 90%;
+            max-width: 950px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px
+                rgba(40, 50, 150, 0.15);
+        }
+
+
+        /* ================================
+           LEFT SIDE
+        ================================= */
+
+        .login-left {
+            padding: 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #10186f,
+                    #4338ca,
+                    #6d28d9
+                );
+
+            color: white;
+        }
+
+
+        .login-left img {
+            width: 170px;
+            margin-bottom: 35px;
+        }
+
+
+        .login-left h1 {
+            font-size: 42px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+
+        .login-left h1 span {
+            color: #b9b2ff;
+        }
+
+
+        .login-left p {
+            color: #e4e7ff;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+
+        /* ================================
+           RIGHT SIDE
+        ================================= */
+
+        .login-right {
+            padding: 55px;
+        }
+
+
+        .login-right h2 {
+            color: #10165c;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+
+        .login-subtitle {
+            color: #687086;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+
+        /* ================================
+           FORM
+        ================================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+            color: #17216b;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 15px;
+
+            border: 1px solid #dfe2f3;
+            border-radius: 10px;
+
+            outline: none;
+            font-size: 14px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .form-group input:focus {
+            border-color: #5b45d8;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(91, 69, 216, 0.10);
+        }
+
+
+        /* ================================
+           REMEMBER / FORGOT
+        ================================= */
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #687086;
+        }
+
+
+        .remember-me input {
+            cursor: pointer;
+        }
+
+
+        .forgot-password {
+            color: #4f46e5;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+
+        .forgot-password:hover {
+            color: #7c3aed;
+        }
+
+
+        /* ================================
+           LOGIN BUTTON
+        ================================= */
+
+        .login-submit {
+            width: 100%;
+            padding: 14px;
+
+            border: none;
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+
+        .login-submit:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(79, 70, 229, 0.25);
+        }
+
+
+        /* ================================
+           REGISTER LINK
+        ================================= */
+
+        .register-text {
+            text-align: center;
+            margin-top: 25px;
+
+            color: #687086;
+            font-size: 14px;
+        }
+
+
+        .register-text a {
+            color: #4f46e5;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+
+        .register-text a:hover {
+            color: #7c3aed;
+        }
+
+
+        /* ================================
+           HOME LINK
+        ================================= */
+
+        .home-link {
+            display: block;
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #687086;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+
+        .home-link:hover {
+            color: #4f46e5;
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 750px) {
+
+            .login-container {
+                grid-template-columns: 1fr;
+                width: 92%;
+            }
+
+
+            .login-left {
+                padding: 35px;
+            }
+
+
+            .login-left img {
+                width: 140px;
+            }
+
+
+            .login-left h1 {
+                font-size: 32px;
+            }
+
+
+            .login-right {
+                padding: 35px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="login-container">
+
+
+        <!-- =========================
+             LEFT SIDE
+        ========================== -->
+
+        <div class="login-left">
+
+            <img
+                src="FutureMe_logo.png"
+                alt="FutureMe Logo"
+            >
+
+
+            <h1>
+                Welcome Back to
+                <span>FutureMe.</span>
+            </h1>
+
+
+            <p>
+                Continue working towards your goals,
+                track your progress, and build the future
+                you want.
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             RIGHT SIDE
+        ========================== -->
+
+        <div class="login-right">
+
+
+            <h2>
+                Welcome Back
+            </h2>
+
+
+            <p class="login-subtitle">
+                Login to continue your FutureMe journey.
+            </p>
+
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm">
+
+
+                <!-- Username -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username or Email
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username or email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Options -->
+
+                <div class="login-options">
+
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot-password"
+                        onclick="alert('Forgot Password feature will be added later.'); return false;"
+                    >
+                        Forgot Password?
+                    </a>
+
+
+                </div>
+
+
+
+                <!-- Login -->
+
+                <button
+                    type="submit"
+                    class="login-submit"
+                >
+
+                    Login
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- Register -->
+
+            <p class="register-text">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Register Now
+                </a>
+
+            </p>
+
+
+
+            <!-- Home -->
+
+            <a
+                href="index.html"
+                class="home-link"
+            >
+
+                ← Back to Home
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         LOGIN JAVASCRIPT
+    ========================== -->
+
+   <script>
+
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+
+    if (username === "" || password === "") {
+        alert("Please enter username/email and password.");
+        return;
+    }
+
+    const formData = new FormData();
+
+    formData.append("login", username);
+    formData.append("password", password);
+
+    try {
+
+        const response = await fetch("api/login.php", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+
+            localStorage.setItem(
+                "futureMeLoggedIn",
+                "true"
+            );
+
+            localStorage.setItem(
+                "futureMeCurrentUser",
+                JSON.stringify(data.user)
+            );
+
+            localStorage.setItem(
+                "futureMeLastUsername",
+                data.user.username
+            );
+
+            alert(data.message);
+
+            window.location.href = "dashboard.html";
+
+        } else {
+
+            alert(data.message);
+
+        }
+
+    } catch (error) {
+
+        console.error("Login Error:", error);
+
+        alert("Unable to connect to the server.");
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

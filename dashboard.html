@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FutureMe | Dashboard</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f8ff;
+            color: #252a41;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .dashboard-header {
+            background: white;
+            border-bottom: 1px solid #e7e9f5;
+            box-shadow: 0 5px 20px rgba(30, 40, 100, 0.06);
+        }
+
+
+        .dashboard-navbar {
+            width: 90%;
+            max-width: 1200px;
+            min-height: 80px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .dashboard-logo img {
+            width: 140px;
+        }
+
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+
+        .user-name {
+            color: #17216b;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+
+        .logout-btn {
+            padding: 10px 20px;
+
+            border-radius: 25px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+            border: none;
+        }
+
+
+        /* =========================
+           DASHBOARD
+        ========================== */
+
+        .dashboard {
+            width: 90%;
+            max-width: 1200px;
+
+            margin: 50px auto;
+        }
+
+
+        .welcome-section {
+            margin-bottom: 40px;
+        }
+
+
+        .welcome-section > span {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 20px;
+
+            background: #eef0ff;
+
+            color: #4f46e5;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        .welcome-section h1 {
+            color: #10165c;
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .welcome-section h1 span {
+            padding: 0;
+
+            background: none;
+
+            font-size: inherit;
+
+            color: #7c3aed;
+        }
+
+
+        .welcome-section p {
+            color: #687086;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           DASHBOARD CARDS
+        ========================== */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .dashboard-card {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            border: 1px solid #e3e6ff;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40, 50, 150, 0.06);
+
+            transition: 0.3s ease;
+        }
+
+
+        .dashboard-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 18px 35px
+                rgba(40, 50, 150, 0.10);
+        }
+
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #eef0ff;
+
+            border-radius: 17px;
+
+            font-size: 28px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .dashboard-card h3 {
+            color: #17216b;
+
+            font-size: 21px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .dashboard-card p {
+            color: #687086;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+
+        .card-button {
+            display: inline-block;
+
+            padding: 11px 20px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           PROGRESS SECTION
+        ========================== */
+
+        .progress-section {
+            margin-top: 40px;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            border: 1px solid #e3e6ff;
+        }
+
+
+        .progress-section h2 {
+            color: #10165c;
+
+            margin-bottom: 20px;
+        }
+
+
+        .progress-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 10px;
+
+            color: #687086;
+
+            font-size: 14px;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+
+            height: 10px;
+
+            background: #e7e9f5;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+            width: 0%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            border-radius: 20px;
+
+            transition: width 0.4s ease;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 850px) {
+
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .dashboard-navbar {
+                width: 92%;
+            }
+
+
+            .dashboard-logo img {
+                width: 115px;
+            }
+
+
+            .user-name {
+                display: none;
+            }
+
+
+            .dashboard {
+                width: 92%;
+                margin: 35px auto;
+            }
+
+
+            .welcome-section h1 {
+                font-size: 32px;
+            }
+
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="dashboard-header">
+
+        <nav class="dashboard-navbar">
+
+
+            <a
+                href="index.html"
+                class="dashboard-logo"
+            >
+
+                <img
+                    src="FutureMe_logo.png"
+                    alt="FutureMe Logo"
+                >
+
+            </a>
+
+
+            <div class="user-area">
+
+                <span
+                    class="user-name"
+                    id="userName"
+                >
+                    Welcome, User
+                </span>
+
+
+                <button
+                    class="logout-btn"
+                    onclick="logout()"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <main class="dashboard">
+
+
+        <!-- Welcome -->
+
+        <section class="welcome-section">
+
+            <span>
+                ✦ YOUR FUTURE DASHBOARD
+            </span>
+
+
+            <h1>
+                Welcome,
+                <span id="welcomeName">
+                    User
+                </span>
+            </h1>
+
+
+            <p>
+                Plan your goals, take action, track your
+                progress, and build the future you want.
+            </p>
+
+        </section>
+
+
+
+        <!-- Dashboard Cards -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- Goal -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🎯
+                </div>
+
+
+                <h3>
+                    My Goals
+                </h3>
+
+
+                <p>
+                    Create and manage the goals you want
+                    to achieve in the future.
+                </p>
+
+
+                <a
+                    href="goal.html"
+                    class="card-button"
+                >
+                    Create Goal →
+                </a>
+
+            </div>
+
+
+
+            <!-- Planner -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🤖
+                </div>
+
+
+                <h3>
+                    Smart Planner
+                </h3>
+
+
+                <p>
+                    Break your goal into smaller,
+                    achievable steps.
+                </p>
+
+
+                <a
+                    href="planner-choice.html"
+                    class="card-button"
+                >
+                    Create Plan →
+                </a>
+
+            </div>
+
+
+
+            <!-- Progress -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📈
+                </div>
+
+
+                <h3>
+                    Progress
+                </h3>
+
+
+                <p>
+                    Track your completed steps and see
+                    how close you are to your goal.
+                </p>
+
+
+                <a
+                    href="progress.html"
+                    class="card-button"
+                >
+                    View Progress →
+                </a>
+
+            </div>
+
+
+
+            <!-- Capsule -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    💌
+                </div>
+
+
+                <h3>
+                    Future Capsule
+                </h3>
+
+
+                <p>
+                    Write a letter or save a memory for
+                    your future self.
+                </p>
+
+
+                <a
+                    href="capsule.html"
+                    class="card-button"
+                >
+                    Create Capsule →
+                </a>
+
+            </div>
+
+
+
+            <!-- My Plans -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📋
+                </div>
+
+
+                <h3>
+                    My Plans
+                </h3>
+
+
+                <p>
+                    View all your goals and plans in
+                    one place.
+                </p>
+
+
+                <a
+                    href="my-plans.html"
+                    class="card-button"
+                >
+                    View Plans →
+                </a>
+
+            </div>
+
+
+
+            <!-- Profile -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+
+                <h3>
+                    My Profile
+                </h3>
+
+
+                <p>
+                    View and manage your FutureMe
+                    account information.
+                </p>
+
+
+                <a
+                    href="profile.html"
+                    class="card-button"
+                >
+                    View Profile →
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PROGRESS
+        ========================== -->
+
+        <section class="progress-section">
+
+            <h2>
+                Current Goal Progress
+            </h2>
+
+
+            <div class="progress-info">
+
+                <span id="dashboardGoal">
+                    Loading goal...
+                </span>
+
+
+                <span id="dashboardPercentage">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="dashboardProgressFill"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         DASHBOARD JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           CHECK LOGIN
+        ========================== */
+
+        const loggedIn =
+            localStorage.getItem(
+                "futureMeLoggedIn"
+            );
+
+
+        if (loggedIn !== "true") {
+
+            alert(
+                "Please login first."
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        /* =========================
+           GET CURRENT USER
+        ========================== */
+
+        const savedUser =
+            localStorage.getItem(
+                "futureMeCurrentUser"
+            );
+
+
+        let currentUser = null;
+
+
+        if (savedUser) {
+
+            try {
+
+                currentUser =
+                    JSON.parse(savedUser);
+
+            } catch (error) {
+
+                console.error(
+                    "Invalid saved user data."
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           DISPLAY USER NAME
+        ========================== */
+
+        if (currentUser) {
+
+            const firstName =
+                currentUser.fullname
+                ? currentUser.fullname
+                    .split(" ")[0]
+                : currentUser.username;
+
+
+            document.getElementById(
+                "userName"
+            ).textContent =
+                "Welcome, " + firstName;
+
+
+            document.getElementById(
+                "welcomeName"
+            ).textContent =
+                firstName;
+
+        }
+
+
+        /* =========================
+           LOAD DATA FROM MYSQL
+        ========================== */
+
+        async function loadDashboardData() {
+
+            if (!currentUser || !currentUser.id) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "api/get_user_data.php?user_id="
+                        + encodeURIComponent(
+                            currentUser.id
+                        )
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    console.error(
+                        data.message
+                    );
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   SAVE LATEST DATA LOCALLY
+                   FOR OTHER PAGES
+                ========================== */
+
+                if (
+                    data.goals &&
+                    data.goals.length > 0
+                ) {
+
+                    const latestGoal =
+                        data.goals[0];
+
+
+                    localStorage.setItem(
+                        "futureMeGoal",
+                        JSON.stringify({
+                            id: Number(
+                                latestGoal.id
+                            ),
+                            name:
+                                latestGoal.name,
+                            description:
+                                latestGoal.description,
+                            category:
+                                latestGoal.category,
+                            startDate:
+                                latestGoal.start_date,
+                            targetDate:
+                                latestGoal.target_date
+                        })
+                    );
+
+
+                    /* =========================
+                       FIND PLAN FOR GOAL
+                    ========================= */
+
+                    let latestPlan = null;
+
+
+                    if (
+                        data.plans &&
+                        data.plans.length > 0
+                    ) {
+
+                        latestPlan =
+                            data.plans.find(
+                                plan =>
+                                    Number(
+                                        plan.goal_id
+                                    ) ===
+                                    Number(
+                                        latestGoal.id
+                                    )
+                            );
+
+                    }
+
+
+                    if (latestPlan) {
+
+                        localStorage.setItem(
+                            "futureMePlan",
+                            JSON.stringify({
+                                id:
+                                    Number(
+                                        latestPlan.id
+                                    ),
+                                type:
+                                    latestPlan.type,
+                                goalName:
+                                    latestPlan.goal_name,
+                                steps:
+                                    latestPlan.steps
+                                        .map(step => ({
+                                            id:
+                                                Number(
+                                                    step.id
+                                                ),
+                                            text:
+                                                step.text,
+                                            completed:
+                                                Number(
+                                                    step.completed
+                                                ) === 1,
+                                            order:
+                                                Number(
+                                                    step.order
+                                                )
+                                        }))
+                            })
+                        );
+
+                    }
+
+
+                    /* =========================
+                       FIND PROGRESS
+                    ========================= */
+
+                    let goalProgress = 0;
+
+
+                    if (
+                        data.progress &&
+                        data.progress.length > 0
+                    ) {
+
+                        const progressItem =
+                            data.progress.find(
+                                item =>
+                                    Number(
+                                        item.goal_id
+                                    ) ===
+                                    Number(
+                                        latestGoal.id
+                                    )
+                            );
+
+
+                        if (progressItem) {
+
+                            goalProgress =
+                                Number(
+                                    progressItem.percentage
+                                ) || 0;
+
+                        }
+
+                    }
+
+
+                    /* =========================
+                       UPDATE DASHBOARD
+                    ========================= */
+
+                    document.getElementById(
+                        "dashboardGoal"
+                    ).textContent =
+                        latestGoal.name;
+
+
+                    document.getElementById(
+                        "dashboardPercentage"
+                    ).textContent =
+                        goalProgress + "%";
+
+
+                    document.getElementById(
+                        "dashboardProgressFill"
+                    ).style.width =
+                        goalProgress + "%";
+
+
+                    /* =========================
+                       SAVE PROGRESS LOCALLY
+                    ========================= */
+
+                    localStorage.setItem(
+                        "futureMeProgress",
+                        String(
+                            goalProgress
+                        )
+                    );
+
+                } else {
+
+                    document.getElementById(
+                        "dashboardGoal"
+                    ).textContent =
+                        "No active goal yet";
+
+
+                    document.getElementById(
+                        "dashboardPercentage"
+                    ).textContent =
+                        "0%";
+
+
+                    document.getElementById(
+                        "dashboardProgressFill"
+                    ).style.width =
+                        "0%";
+
+                }
+
+
+                /* =========================
+                   SAVE CAPSULES LOCALLY
+                   FOR CAPSULE PAGE
+                ========================= */
+
+                if (
+                    data.capsules &&
+                    data.capsules.length > 0
+                ) {
+
+                    const latestCapsule =
+                        data.capsules[0];
+
+
+                    localStorage.setItem(
+                        "futureMeCapsule",
+                        JSON.stringify({
+                            id:
+                                Number(
+                                    latestCapsule.id
+                                ),
+                            title:
+                                latestCapsule.title,
+                            message:
+                                latestCapsule.message,
+                            unlockDate:
+                                latestCapsule.unlock_date,
+                            createdAt:
+                                latestCapsule.created_at
+                        })
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Dashboard data loading error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================== */
+
+        function logout() {
+
+            localStorage.removeItem(
+                "futureMeLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "futureMeCurrentUser"
+            );
+
+            localStorage.removeItem(
+                "futureMeGoal"
+            );
+
+            localStorage.removeItem(
+                "futureMePlan"
+            );
+
+            localStorage.removeItem(
+                "futureMeProgress"
+            );
+
+            localStorage.removeItem(
+                "futureMeCapsule"
+            );
+
+
+            alert(
+                "You have been logged out."
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        /* =========================
+           START DASHBOARD
+        ========================== */
+
+        if (
+            loggedIn === "true" &&
+            currentUser
+        ) {
+
+            loadDashboardData();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

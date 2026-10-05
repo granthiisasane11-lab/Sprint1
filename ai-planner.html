@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FutureMe | AI Planner</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f7f8ff;
+
+            color: #252a41;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+
+            background: white;
+
+            border-bottom:
+                1px solid #e5e7f5;
+
+            box-shadow:
+                0 5px 20px
+                rgba(30,40,100,0.06);
+
+        }
+
+
+        .navbar {
+
+            width: 90%;
+
+            max-width: 1150px;
+
+            min-height: 78px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+
+        .logo img {
+
+            width: 140px;
+
+            display: block;
+
+        }
+
+
+        .change-planner {
+
+            text-decoration: none;
+
+            color: #4f46e5;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        .change-planner:hover {
+
+            color: #7c3aed;
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .container {
+
+            width: 90%;
+
+            max-width: 850px;
+
+            margin: 55px auto 80px;
+
+        }
+
+
+        .tag {
+
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 20px;
+
+            background: #eef0ff;
+
+            color: #4f46e5;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        h1 {
+
+            font-size: 42px;
+
+            color: #10165c;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .intro {
+
+            color: #687086;
+
+            line-height: 1.7;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        /* =========================
+           GOAL CARD
+        ========================== */
+
+        .goal-card {
+
+            background: white;
+
+            border: 1px solid #e3e6ff;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,50,150,0.06);
+
+        }
+
+
+        .goal-card h2 {
+
+            color: #17216b;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .goal-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .goal-item {
+
+            background: #f7f8ff;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+        }
+
+
+        .goal-item span {
+
+            display: block;
+
+            font-size: 12px;
+
+            color: #7b8196;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .goal-item strong {
+
+            display: block;
+
+            color: #20275f;
+
+            font-size: 15px;
+
+            word-break: break-word;
+
+        }
+
+
+        .description-box {
+
+            margin-top: 18px;
+
+            background: #f7f8ff;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+        }
+
+
+        .description-box span {
+
+            display: block;
+
+            font-size: 12px;
+
+            color: #7b8196;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .description-box p {
+
+            color: #414862;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           AI MESSAGE
+        ========================== */
+
+        .ai-message {
+
+            display: flex;
+
+            gap: 15px;
+
+            align-items: flex-start;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5efff
+                );
+
+            border: 1px solid #dfe3ff;
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .ai-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            min-width: 48px;
+
+            border-radius: 14px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 22px;
+
+        }
+
+
+        .ai-message h3 {
+
+            color: #17216b;
+
+            margin-bottom: 5px;
+
+            font-size: 17px;
+
+        }
+
+
+        .ai-message p {
+
+            color: #596078;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           PLAN CARD
+        ========================== */
+
+        .plan-card {
+
+            background: white;
+
+            border: 1px solid #e3e6ff;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,50,150,0.06);
+
+        }
+
+
+        .plan-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .plan-header h2 {
+
+            color: #10165c;
+
+            font-size: 23px;
+
+        }
+
+
+        .step-count {
+
+            background: #eef0ff;
+
+            color: #4f46e5;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =========================
+           LOADING
+        ========================== */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+        }
+
+
+        .spinner {
+
+            width: 45px;
+
+            height: 45px;
+
+            border: 4px solid #e5e7f5;
+
+            border-top-color: #7c3aed;
+
+            border-radius: 50%;
+
+            animation:
+                spin 0.9s linear infinite;
+
+            margin: 0 auto 18px;
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        .loading h3 {
+
+            color: #17216b;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .loading p {
+
+            color: #687086;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           ERROR
+        ========================== */
+
+        .error-box {
+
+            background: #fff1f2;
+
+            border: 1px solid #fecdd3;
+
+            color: #be123c;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+
+            display: none;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* =========================
+           STEPS
+        ========================== */
+
+        #stepsContainer {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+
+        }
+
+
+        .step {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            padding: 18px;
+
+            border: 1px solid #e5e7f5;
+
+            border-radius: 16px;
+
+            background: #fafaff;
+
+        }
+
+
+        .step-number {
+
+            width: 38px;
+
+            height: 38px;
+
+            min-width: 38px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+        }
+
+
+        .step-text {
+
+            flex: 1;
+
+            color: #343b55;
+
+            font-size: 14px;
+
+            line-height: 1.65;
+
+            padding-top: 7px;
+
+        }
+
+
+        /* =========================
+           ACTIONS
+        ========================== */
+
+        .actions {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 28px;
+
+        }
+
+
+        .btn {
+
+            border: none;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            padding: 13px 22px;
+
+            border-radius: 28px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .btn-secondary {
+
+            background: #eef0ff;
+
+            color: #4f46e5;
+
+        }
+
+
+        .btn-primary {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 8px 20px
+                rgba(76,70,229,0.20);
+
+        }
+
+
+        .btn:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* =========================
+           HIDDEN
+        ========================== */
+
+        .hidden {
+
+            display: none !important;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                width: 92%;
+
+            }
+
+
+            .logo img {
+
+                width: 120px;
+
+            }
+
+
+            .container {
+
+                width: 92%;
+
+                margin-top: 35px;
+
+            }
+
+
+            h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            .goal-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .plan-card,
+            .goal-card {
+
+                padding: 22px;
+
+            }
+
+
+            .plan-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+
+            .actions {
+
+                flex-direction: column-reverse;
+
+            }
+
+
+            .btn {
+
+                width: 100%;
+
+                text-align: center;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+
+            <img
+                src="FutureMe_logo.png"
+                alt="FutureMe Logo"
+            >
+
+        </a>
+
+
+        <a
+            href="planner-choice.html"
+            class="change-planner"
+        >
+
+            ← Change Planner
+
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     MAIN
+========================== -->
+
+<main class="container">
+
+
+    <span class="tag">
+        ✦ AI PLANNER
+    </span>
+
+
+    <h1>
+        Your Smart Plan Is Ready
+    </h1>
+
+
+    <p class="intro">
+
+        FutureMe AI will understand your goal,
+        consider your target date, and create
+        practical steps to help you move forward.
+
+    </p>
+
+
+
+    <!-- =========================
+         GOAL
+    ========================== -->
+
+    <section class="goal-card">
+
+        <h2>
+            🎯 Your Goal
+        </h2>
+
+
+        <div class="goal-grid">
+
+
+            <div class="goal-item">
+
+                <span>
+                    Goal
+                </span>
+
+                <strong id="goalName">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <div class="goal-item">
+
+                <span>
+                    Category
+                </span>
+
+                <strong id="goalCategory">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <div class="goal-item">
+
+                <span>
+                    Target Date
+                </span>
+
+                <strong id="targetDate">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="description-box">
+
+            <span>
+                Description
+            </span>
+
+            <p id="goalDescription">
+                Loading...
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         AI MESSAGE
+    ========================== -->
+
+    <section class="ai-message">
+
+        <div class="ai-icon">
+            🤖
+        </div>
+
+
+        <div>
+
+            <h3>
+                FutureMe AI
+            </h3>
+
+            <p id="aiStatus">
+                AI is creating your personalized
+                plan...
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ERROR
+    ========================== -->
+
+    <div
+        id="errorBox"
+        class="error-box"
+    ></div>
+
+
+
+    <!-- =========================
+         PLAN
+    ========================== -->
+
+    <section
+        id="planCard"
+        class="plan-card hidden"
+    >
+
+        <div class="plan-header">
+
+            <h2>
+                📋 Suggested Steps
+            </h2>
+
+
+            <span
+                id="stepCount"
+                class="step-count"
+            >
+                0 Steps
+            </span>
+
+        </div>
+
+
+        <div id="stepsContainer"></div>
+
+
+        <div class="actions">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                id="regenerateBtn"
+            >
+                🔄 Regenerate Plan
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-primary"
+                id="savePlanBtn"
+            >
+                Save Plan & Continue →
+            </button>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+/* =====================================================
+   FUTUREME AI PLANNER
+===================================================== */
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const goalNameElement =
+    document.getElementById(
+        "goalName"
+    );
+
+
+const goalCategoryElement =
+    document.getElementById(
+        "goalCategory"
+    );
+
+
+const targetDateElement =
+    document.getElementById(
+        "targetDate"
+    );
+
+
+const goalDescriptionElement =
+    document.getElementById(
+        "goalDescription"
+    );
+
+
+const aiStatusElement =
+    document.getElementById(
+        "aiStatus"
+    );
+
+
+const planCard =
+    document.getElementById(
+        "planCard"
+    );
+
+
+const stepsContainer =
+    document.getElementById(
+        "stepsContainer"
+    );
+
+
+const stepCountElement =
+    document.getElementById(
+        "stepCount"
+    );
+
+
+const errorBox =
+    document.getElementById(
+        "errorBox"
+    );
+
+
+const savePlanBtn =
+    document.getElementById(
+        "savePlanBtn"
+    );
+
+
+const regenerateBtn =
+    document.getElementById(
+        "regenerateBtn"
+    );
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentGoal = null;
+
+let currentUser = null;
+
+let generatedSteps = [];
+
+
+/* =========================
+   SHOW ERROR
+========================= */
+
+function showError(message) {
+
+    errorBox.textContent =
+        message;
+
+    errorBox.style.display =
+        "block";
+
+}
+
+
+/* =========================
+   HIDE ERROR
+========================= */
+
+function hideError() {
+
+    errorBox.style.display =
+        "none";
+
+    errorBox.textContent =
+        "";
+
+}
+
+
+/* =========================
+   LOAD USER
+========================= */
+
+function loadUser() {
+
+    const savedUser =
+        localStorage.getItem(
+            "futureMeCurrentUser"
+        );
+
+
+    if (!savedUser) {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+
+    }
+
+
+    try {
+
+        currentUser =
+            JSON.parse(
+                savedUser
+            );
+
+    } catch (error) {
+
+        localStorage.removeItem(
+            "futureMeCurrentUser"
+        );
+
+        window.location.href =
+            "login.html";
+
+        return false;
+
+    }
+
+
+    if (
+        !currentUser ||
+        !currentUser.id
+    ) {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================
+   LOAD GOAL
+========================= */
+
+function loadGoal() {
+
+    const savedGoal =
+        localStorage.getItem(
+            "futureMeGoal"
+        );
+
+
+    if (!savedGoal) {
+
+        showError(
+            "No goal was found. Please create a goal first."
+        );
+
+        aiStatusElement.textContent =
+            "Please create a goal before using the AI Planner.";
+
+        return false;
+
+    }
+
+
+    try {
+
+        currentGoal =
+            JSON.parse(
+                savedGoal
+            );
+
+    } catch (error) {
+
+        showError(
+            "The saved goal data is invalid."
+        );
+
+        return false;
+
+    }
+
+
+    if (
+        !currentGoal ||
+        !currentGoal.id
+    ) {
+
+        showError(
+            "Goal information is incomplete. Please create the goal again."
+        );
+
+        return false;
+
+    }
+
+
+    goalNameElement.textContent =
+        currentGoal.name ||
+        "Not specified";
+
+
+    goalCategoryElement.textContent =
+        currentGoal.category ||
+        "General";
+
+
+    targetDateElement.textContent =
+    formatDate(
+        currentGoal.target_date ||
+        currentGoal.targetDate ||
+        ""
+    );
+
+    goalDescriptionElement.textContent =
+        currentGoal.description ||
+        "No additional description provided.";
+
+
+    return true;
+
+}
+
+
+/* =========================
+   FORMAT DATE
+========================= */
+
+function formatDate(dateValue) {
+
+    if (!dateValue) {
+
+        return "Not specified";
+
+    }
+
+
+    const parts =
+        String(dateValue).split("-");
+
+
+    if (
+        parts.length === 3
+    ) {
+
+        return (
+            parts[2] +
+            "/" +
+            parts[1] +
+            "/" +
+            parts[0]
+        );
+
+    }
+
+
+    return dateValue;
+
+}
+
+
+/* =========================
+   GENERATE AI PLAN
+========================= */
+
+async function generateAIPlan() {
+
+    hideError();
+
+
+    planCard.classList.add(
+        "hidden"
+    );
+
+
+    stepsContainer.innerHTML =
+        "";
+
+
+    generatedSteps = [];
+
+
+    aiStatusElement.textContent =
+        "AI is creating your personalized plan...";
+
+
+    savePlanBtn.disabled =
+        true;
+
+
+    regenerateBtn.disabled =
+        true;
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "user_id",
+        currentUser.id
+    );
+
+
+    formData.append(
+        "goal",
+        currentGoal.name || ""
+    );
+
+
+    formData.append(
+        "description",
+        currentGoal.description || ""
+    );
+
+
+    formData.append(
+        "category",
+        currentGoal.category || ""
+    );
+
+
+    formData.append(
+    "start_date",
+    currentGoal.start_date ||
+    currentGoal.startDate ||
+    ""
+);
+
+
+formData.append(
+    "target_date",
+    currentGoal.target_date ||
+    currentGoal.targetDate ||
+    ""
+);
+
+
+    try {
+
+        const response =
+            await fetch(
+                "api/generate_ai_plan.php",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "AI could not generate the plan."
+            );
+
+        }
+
+
+        if (
+            !Array.isArray(
+                data.steps
+            ) ||
+            data.steps.length === 0
+        ) {
+
+            throw new Error(
+                "AI returned no usable steps."
+            );
+
+        }
+
+
+        generatedSteps =
+            data.steps.map(
+                function(step) {
+
+                    return {
+
+                        text:
+                            step.step,
+
+                        completed:
+                            false
+
+                    };
+
+                }
+            );
+
+
+        renderSteps();
+
+
+        aiStatusElement.textContent =
+            "Your personalized plan has been created. Review the steps and save your plan.";
+
+
+        planCard.classList.remove(
+            "hidden"
+        );
+
+
+        savePlanBtn.disabled =
+            false;
+
+
+    } catch (error) {
+
+        console.error(
+            "AI Planner Error:",
+            error
+        );
+
+
+        showError(
+            error.message ||
+            "Something went wrong while generating the AI plan."
+        );
+
+
+        aiStatusElement.textContent =
+            "We could not generate your plan. Please try again.";
+
+    }
+
+
+    regenerateBtn.disabled =
+        false;
+
+}
+
+
+/* =========================
+   RENDER STEPS
+========================= */
+
+function renderSteps() {
+
+    stepsContainer.innerHTML =
+        "";
+
+
+    generatedSteps.forEach(
+        function(step, index) {
+
+            const stepElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            stepElement.className =
+                "step";
+
+
+            const numberElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            numberElement.className =
+                "step-number";
+
+
+            numberElement.textContent =
+                index + 1;
+
+
+            const textElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            textElement.className =
+                "step-text";
+
+
+            textElement.textContent =
+                step.text;
+
+
+            stepElement.appendChild(
+                numberElement
+            );
+
+
+            stepElement.appendChild(
+                textElement
+            );
+
+
+            stepsContainer.appendChild(
+                stepElement
+            );
+
+        }
+    );
+
+
+    stepCountElement.textContent =
+        generatedSteps.length +
+        (
+            generatedSteps.length === 1
+                ? " Step"
+                : " Steps"
+        );
+
+}
+
+
+/* =========================
+   SAVE PLAN
+========================= */
+
+async function savePlan() {
+
+    if (
+        !currentUser ||
+        !currentUser.id
+    ) {
+
+        showError(
+            "User information is missing. Please login again."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !currentGoal ||
+        !currentGoal.id
+    ) {
+
+        showError(
+            "Goal information is missing."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        generatedSteps.length === 0
+    ) {
+
+        showError(
+            "There are no steps to save."
+        );
+
+        return;
+
+    }
+
+
+    savePlanBtn.disabled =
+        true;
+
+
+    regenerateBtn.disabled =
+        true;
+
+
+    savePlanBtn.textContent =
+        "Saving Plan...";
+
+
+    hideError();
+
+
+    const stepsForBackend =
+        generatedSteps.map(
+            function(step) {
+
+                return {
+
+                    text:
+                        step.text,
+
+                    completed:
+                        false
+
+                };
+
+            }
+        );
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "user_id",
+        currentUser.id
+    );
+
+
+    formData.append(
+        "goal_id",
+        currentGoal.id
+    );
+
+
+    formData.append(
+        "type",
+        "AI"
+    );
+
+
+    formData.append(
+        "steps",
+        JSON.stringify(
+            stepsForBackend
+        )
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "api/save_plan.php",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "Could not save the plan."
+            );
+
+        }
+
+
+        /* =========================
+           CREATE PLAN OBJECT
+        ========================== */
+
+        const plan = {
+
+            id:
+                data.plan_id,
+
+            plan_id:
+                data.plan_id,
+
+            type:
+                "AI",
+
+            goal_id:
+                currentGoal.id,
+
+            goalName:
+                currentGoal.name,
+
+            steps:
+                stepsForBackend
+
+        };
+
+
+        /* =========================
+           SAVE PLAN ID
+        ========================== */
+
+        localStorage.setItem(
+            "futureMePlanId",
+            String(
+                data.plan_id
+            )
+        );
+
+
+        /* =========================
+           SAVE PLAN
+        ========================== */
+
+        localStorage.setItem(
+            "futureMePlan",
+            JSON.stringify(
+                plan
+            )
+        );
+
+
+        /* =========================
+           INITIAL PROGRESS
+        ========================== */
+
+        localStorage.setItem(
+            "futureMeProgress",
+            JSON.stringify({
+
+                percentage: 0,
+
+                completed_steps: 0,
+
+                total_steps:
+                    stepsForBackend.length,
+
+                remaining_steps:
+                    stepsForBackend.length
+
+            })
+        );
+
+
+        savePlanBtn.textContent =
+            "Plan Saved ✓";
+
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "progress.html";
+
+            },
+            500
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Save Plan Error:",
+            error
+        );
+
+
+        showError(
+            error.message ||
+            "Could not save your plan."
+        );
+
+
+        savePlanBtn.disabled =
+            false;
+
+
+        regenerateBtn.disabled =
+            false;
+
+
+        savePlanBtn.textContent =
+            "Save Plan & Continue →";
+
+    }
+
+}
+
+
+/* =========================
+   EVENTS
+========================= */
+
+savePlanBtn.addEventListener(
+    "click",
+    savePlan
+);
+
+
+regenerateBtn.addEventListener(
+    "click",
+    generateAIPlan
+);
+
+
+/* =========================
+   START
+========================= */
+
+if (
+    loadUser() &&
+    loadGoal()
+) {
+
+    generateAIPlan();
+
+}
+
+</script>
+
+
+</body>
+
+</html>
